@@ -1,0 +1,121 @@
+<style>
+
+#defultrec
+{
+   height:166px;
+   width : auto;
+}
+#toprec {
+    z-index:1;
+    top:1px;
+    position:fixed;
+
+
+}
+#toptitle {
+    color:white;
+    text-align:left;
+    padding:10px;
+    top:0px;
+    position:fixed;
+    z-index:2;
+}
+#topicon{
+    display:block;
+    top:8px;
+    right:0px;
+    position:fixed;
+    border:0px;
+
+    z-index:2;
+
+}
+#centertopicon
+{
+    right:300px;
+    display:block;
+    top:8px;
+    position:fixed;
+    z-index:1;
+
+}
+
+#centertopicon2
+{
+    left:300px;
+    display:block;
+    top:8px;
+    position:fixed;
+    z-index:1;
+
+}
+
+#widthicon
+{
+z-index:0
+}
+
+#sideicon
+{
+    position:absolute;
+    top:166px;
+    right:0px;
+    z-index:-1;
+}
+
+#rightIcon
+{
+    position:absolute;
+	top:3000px;
+	right:0px;
+    z-index:-1;
+}
+
+#header2
+{
+
+    padding:5px;
+    border:#FFFEEE   solid 2px;
+    margin:25px 0px:
+
+}
+#GS
+{
+    width:500px;
+    padding:5px;
+    border:#FFFEEE   solid 2px;
+    margin:25px 0px:
+    word-wrap:break-word:
+
+
+}
+
+#header4
+{
+    href:https://www.youtube.com/playlist?list=PLNViQxXZws7fJSOiYiUcUKs8OA9m58BzV
+}
+
+#Aicon
+{
+       display:block;
+       bottom:8px;
+       right:0px;
+       position:fixed;
+       border:0px;
+
+       z-index:2;
+
+}
+
+
+
+h2,h3,h6{
+    color:#FCEAAA;
+}
+p,ol{
+    color:white;
+}
+ul{
+    color:#FFA7B7;
+}
+</style>

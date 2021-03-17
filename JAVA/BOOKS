@@ -1,0 +1,99 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+
+public class github {
+	public static final String DB_TABLE_NAME = "Books";
+	public static Connection connection = null;
+	public static Statement statement = null;
+	public static ResultSet resultSet = null;
+	public static ArrayList<Book> allQuestionArrList = new ArrayList<Book>();//arrList to store All questions
+	public static float totalPoints =0;
+	///open DB
+	public static void openDB() {
+				try {
+					Class.forName(
+					"net.ucanaccess.jdbc.UcanaccessDriver");
+				} catch (ClassNotFoundException cnfex) {
+					System.out.println("Problem in loading or " +
+					"registering MS Access JDBC driver");
+					cnfex.printStackTrace();
+				}
+				
+				try {
+					String msAccDB = "../accessFile.accdb";
+					String dbURL = "jdbc:ucanaccess://" +
+					msAccDB;
+					connection =
+					DriverManager.getConnection(dbURL);
+					statement = connection.createStatement();
+					
+				}
+				catch (SQLException sqlex) {
+				sqlex.printStackTrace();
+				} finally {
+					
+				}
+	}
+	//SELECT ALL then initialize all questions 
+	public static void readAllFromDB() {
+		allQuestionArrList = new ArrayList<Question>();
+		try {
+			Class.forName(
+			"net.ucanaccess.jdbc.UcanaccessDriver");
+		} catch (ClassNotFoundException cnfex) {
+			System.out.println("Problem in loading or " +
+			"registering MS Access JDBC driver");
+			cnfex.printStackTrace();
+		}
+		
+		try {
+			
+			resultSet = statement.executeQuery(
+			"SELECT * FROM "+ DB_TABLE_NAME);
+		
+		} catch (SQLException sqlex) {
+		sqlex.printStackTrace();
+		} finally {
+			
+		}
+}
+	///insert one to DB
+	public static void insertOneToDB(String Attr1,float Attr2, double Attr3, int Attr4) throws SQLException{
+		String insertSQL = String.format("INSERT INTO %s (Attr1, Attr2,Attr3,Attr4) VALUES ('%s','%f', %d,'%i')",DB_TABLE_NAME,Attr1,Attr2,Attr3,Attr4);
+				statement.executeUpdate(insertSQL);
+	}
+	//update one
+	public static void updateOneInDB(String Attr1, double Attr2) throws SQLException{
+		String updateSQL = String.format("UPDATE TableName SET Attr1 = %s WHERE Attr2= '%d'", Attr1,Attr2);
+				statement.executeUpdate(updateSQL);
+	}
+	//delete one
+	public static void deleteOneFromDB(String Attr1) throws SQLException{
+
+		String deleteSQL =
+				String.format("DELETE FROM TableName WHERE Attr1='%s'",Attr1);
+				statement.executeUpdate(deleteSQL);
+	}
+	//CLOSE DB
+	public static void closeDB() {
+		try {
+			if (connection != null) {
+			if (resultSet != null) {
+				resultSet.close();
+			}
+			if (statement!=null) {
+				statement.close();
+			}
+			
+			connection.close();
+			}
+		}catch(SQLException sqlex) {
+			sqlex.printStackTrace();
+		}
+	}
+}
